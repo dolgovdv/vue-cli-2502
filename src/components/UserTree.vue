@@ -25,16 +25,6 @@
     </script>
 
     <p>(You can double click on an item to turn it into a folder.)</p>
-
-    <!-- the demo root element -->
-    <ul id="demo">
-      <tree-item
-        class="item"
-        :item="treeData"
-        @make-folder="makeFolder"
-        @add-item="addItem"
-      ></tree-item>
-    </ul>
   </div>
 </template>
 
@@ -69,21 +59,3 @@ export default {
   }
 }
 </script>
-
-<style>
-body {
-  font-family: Menlo, Consolas, monospace;
-  color: #444;
-}
-.item {
-  cursor: pointer;
-}
-.bold {
-  font-weight: bold;
-}
-ul {
-  padding-left: 1em;
-  line-height: 1.5em;
-  list-style-type: dot;
-}
-</style>

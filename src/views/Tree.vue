@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <h1>Tree</h1>
-    <user-tree></user-tree>
+    <user-tree class="item" :item="treeData" @make-folder="makeFolder" @add-item="addItem">
+    </user-tree>
+    <!-- the demo root element -->
   </div>
 </template>
 
@@ -55,3 +57,21 @@ export default {
   }
 }
 </script>
+
+<style>
+body {
+  font-family: Menlo, Consolas, monospace;
+  color: #444;
+}
+.item {
+  cursor: pointer;
+}
+.bold {
+  font-weight: bold;
+}
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: dot;
+}
+</style>
