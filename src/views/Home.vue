@@ -2,15 +2,15 @@
   <div class="home">
     <h1>Список пользователей {{ countList }}</h1>
     <!-- кнопка скрытия таблицы -->
-    <button type="button" v-on:click="changeShow" class="btn btn-outline-primary">
+    <button type="button" class="btn btn-outline-primary" @click="changeShow">
       {{ changeTextButton }}
     </button>
     <!-- условие отображения списка -->
     <template v-if="show">
       <users-table
-        v-bind:users="list"
-        v-on:remove-user="removeFromList"
-        v-on:user-edit="editUserMain"
+        :users="list"
+        @remove-user="removeFromList"
+        @user-edit="editUserMain"
       ></users-table>
     </template>
   </div>
@@ -47,7 +47,7 @@ const list = [
 ]
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     'users-table': UserTable
   },
@@ -56,8 +56,7 @@ export default {
       list: [], // список пользователей
       show: true, // отображение таблицы
       edit: false, //  отображение формы редактирования
-      editData: '',
-      textButton: ''
+      editData: ''
     }
   },
   computed: {
@@ -67,17 +66,16 @@ export default {
     },
     changeTextButton: function() {
       // смена названия кнопки
-      if (this.show === true) {
-        return 'hidden'
-      } else {
-        return 'show list'
-      }
+      return this.show === true ? 'hidden' : 'show list'
     }
   },
   watch: {
     list: function() {
       console.log('list change')
     }
+  },
+  mounted: function() {
+    this.list = list
   },
   methods: {
     // изменение отображения таблицы
@@ -97,9 +95,6 @@ export default {
       this.editData = listItem
       console.log('editData = ', this.editData)
     }
-  },
-  mounted: function() {
-    this.list = list
   }
 }
 </script>

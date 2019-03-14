@@ -13,15 +13,15 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item nav-link active">
             <router-link to="/">Home</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-link">
             <router-link to="/about">About</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-link">
             <router-link to="/tree">Tree</router-link>
           </li>
         </ul>

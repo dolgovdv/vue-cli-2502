@@ -11,6 +11,7 @@
 
 <script>
 import UserTree from '@/components/UserTree.vue'
+import Vue from 'vue'
 
 // demo data
 const treeData = {
@@ -48,7 +49,7 @@ export default {
   },
   methods: {
     makeFolder: function(item) {
-      UserTree.set(item, 'children', [])
+      Vue.set(item, 'children', [])
       this.addItem(item)
     },
     addItem: function(item) {
