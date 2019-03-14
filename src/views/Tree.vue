@@ -1,8 +1,10 @@
 <template>
   <div class="about">
     <h1>Tree</h1>
-    <user-tree class="item" :item="treeData" @make-folder="makeFolder" @add-item="addItem">
-    </user-tree>
+    <ul id="demo">
+      <user-tree class="item" :item="treeData" @make-folder="makeFolder" @add-item="addItem">
+      </user-tree>
+    </ul>
     <!-- the demo root element -->
   </div>
 </template>
@@ -65,9 +67,6 @@ body {
 }
 .item {
   cursor: pointer;
-}
-.bold {
-  font-weight: bold;
 }
 ul {
   padding-left: 1em;

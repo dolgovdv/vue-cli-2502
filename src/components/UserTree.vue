@@ -59,3 +59,17 @@ export default {
   }
 }
 </script>
+
+<style>
+.bold {
+  font-weight: bold;
+}
+.item {
+  cursor: pointer;
+}
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: dot;
+}
+</style>
