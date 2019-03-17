@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>
@@ -10,10 +10,10 @@
             Имя
           </th>
           <th>
-            Отчество
+            Фамилия
           </th>
           <th>
-            Фамилия
+            Доступ
           </th>
           <th>
             Аватар
@@ -26,19 +26,19 @@
       <tbody>
         <tr v-for="listItem in users" :key="listItem.id">
           <td>
-            <button type="button" @click="removeUser(listItem.id)"># {{ listItem.id }}</button>
+            <router-link :to="'/edit/' + listItem.id"># {{ listItem.id }} </router-link>
           </td>
           <td>
             {{ listItem.firstName }}
           </td>
           <td>
-            {{ listItem.secondName }}
+            {{ listItem.lastName }}
           </td>
           <td>
-            {{ listItem.surName }}
+            {{ listItem.accessLevel }}
           </td>
           <td>
-            <img :src="changeAvatarShow(listItem.avatar)" alt="not" />
+            <img :src="changeAvatarShow(listItem.picture)" alt="not" />
           </td>
           <td>
             <button type="button" @click="editUser(listItem)">
@@ -68,11 +68,8 @@ export default {
   },
   methods: {
     // проверка аватарки и замена на значение по умолчанию
-    changeAvatarShow: function(av) {
-      if (av === '') {
-        av = 'http://www.avatar-mix.ru/avatars_64x64/289.jpg'
-      }
-      return av
+    changeAvatarShow: function(avatarLink) {
+      return avatarLink || 'http://www.avatar-mix.ru/avatars_64x64/289.jpg'
     },
     removeUser: function(id) {
       console.log('removeUser =', id)

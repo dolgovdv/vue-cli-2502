@@ -19,32 +19,7 @@
 <script>
 // @ is an alias to /src
 import UserTable from '@/components/UserTable.vue'
-
-const list = [
-  {
-    id: 1,
-    firstName: 'Иван',
-    secondName: 'Иванович',
-    surName: 'Иванов',
-    avatar: 'http://www.avatar-mix.ru/avatars_64x64/440.jpg'
-  },
-  { id: 2, firstName: 'Петр', secondName: 'Петрович', surName: 'Петров', avatar: '' },
-  {
-    id: 3,
-    firstName: 'Иван',
-    secondName: 'Иванович',
-    surName: 'Иванов',
-    avatar: 'http://www.avatar-mix.ru/avatars_64x64/440.jpg'
-  },
-  {
-    id: 4,
-    firstName: 'Иван',
-    secondName: 'Иванович',
-    surName: 'Иванов',
-    avatar: 'http://www.avatar-mix.ru/avatars_64x64/440.jpg'
-  },
-  { id: 5, firstName: 'Иван', secondName: 'Иванович', surName: 'Иванов', avatar: '' }
-]
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -56,7 +31,8 @@ export default {
       list: [], // список пользователей
       show: true, // отображение таблицы
       edit: false, //  отображение формы редактирования
-      editData: ''
+      editData: '',
+      users: []
     }
   },
   computed: {
@@ -75,7 +51,7 @@ export default {
     }
   },
   mounted: function() {
-    this.list = list
+    this.loadUsers()
   },
   methods: {
     // изменение отображения таблицы
@@ -94,6 +70,15 @@ export default {
       this.edit = true
       this.editData = listItem
       console.log('editData = ', this.editData)
+    },
+    loadUsers() {
+      axios
+        .get('http://localhost:3030/users/')
+        .then(response => response.data)
+        .then(users => {
+          this.list = users
+          // console.log('users', this.users)
+        })
     }
   }
 }

@@ -3,10 +3,13 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Tree from '@/views/Tree.vue'
+import Edit from '@/views/Edit'
 
 Vue.use(Router)
 
 export default new Router({
+  linkActiveClass: 'active',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -17,15 +20,16 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
       path: '/tree',
       name: 'tree',
       component: Tree
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: Edit
     }
   ]
 })
