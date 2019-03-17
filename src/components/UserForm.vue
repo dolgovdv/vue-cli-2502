@@ -3,6 +3,7 @@
     <div class="form-group">
       <label>Имя</label>
       <input v-model="localUser.firstName" type="text" class="form-control" />
+      <pre>{{ user.firstName }}</pre>
     </div>
   </div>
 </template>
@@ -18,20 +19,10 @@ export default {
   },
   data: function() {
     return {
-      localUser: null
+      localUser: {}
     }
   },
-  watch: {
-    // При изменении локального состояния
-    // отправляем объект наверх
-    localUser: {
-      deep: true,
-      handler() {
-        this.$emit('input', this.localUser)
-      }
-    }
-  },
-  created() {
+  mounted() {
     // Копируем пользователя в локальное состояние
     this.localUser = Object.assign({}, this.user)
   }

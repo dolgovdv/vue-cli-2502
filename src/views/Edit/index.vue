@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>Edit Users {{ id }}</div>
-    <user-form :user="user"></user-form>
+    <user-form v-if="user" :user="user"></user-form>
   </div>
 </template>
 
