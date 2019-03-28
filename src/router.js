@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Tree from '@/views/Tree.vue'
-import Edit from '@/views/Edit'
+import Edit from '@/views/EditUser.vue'
 
 Vue.use(Router)
 

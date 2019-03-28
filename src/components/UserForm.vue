@@ -22,9 +22,10 @@ export default {
       localUser: {}
     }
   },
-  mounted() {
+  created() {
     // Копируем пользователя в локальное состояние
     this.localUser = Object.assign({}, this.user)
+    // console.log('this.localUser = ', this.localUser)
   }
 }
 </script>

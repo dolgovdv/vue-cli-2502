@@ -15,21 +15,18 @@
       </button>
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/" exact>
-              Home
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">
-              About
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/tree">
-              Tree
-            </router-link>
-          </li>
+          <router-link tag="li" class="nav-link" to="/" exact>
+            Home
+          </router-link>
+          <router-link tag="li" class="nav-link" to="/about">
+            About
+          </router-link>
+          <router-link tag="li" class="nav-link" to="/tree">
+            Tree
+          </router-link>
+          <router-link tag="li" class="nav-link" to="/map">
+            Map
+          </router-link>
         </ul>
       </div>
     </nav>
