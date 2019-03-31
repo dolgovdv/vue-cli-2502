@@ -26,7 +26,9 @@
       <tbody>
         <tr v-for="listItem in users" :key="listItem.id">
           <td>
-            <router-link :to="'/edit/' + listItem.id"># {{ listItem.id }} </router-link>
+            <button type="button" @click="removeUser(listItem.id)">
+              RemoveUser
+            </button>
           </td>
           <td>
             {{ listItem.firstName }}
@@ -41,9 +43,7 @@
             <img :src="changeAvatarShow(listItem.picture)" alt="not" />
           </td>
           <td>
-            <button type="button" @click="editUser(listItem)">
-              editUser
-            </button>
+            <router-link :to="'/edit/' + listItem.id"># {{ listItem.id }} </router-link>
           </td>
         </tr>
       </tbody>
@@ -72,7 +72,7 @@ export default {
       return avatarLink || 'http://www.avatar-mix.ru/avatars_64x64/289.jpg'
     },
     removeUser: function(id) {
-      console.log('removeUser =', id)
+      // console.log('removeUser =', id)
 
       this.$emit('remove-user', id)
     },

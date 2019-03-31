@@ -13,18 +13,20 @@
         @user-edit="editUserMain"
       ></users-table>
     </template>
+    <connect-db :query="queryHome" @connect-db="UserFromDB" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import UserTable from '@/components/UserTable.vue'
-import axios from 'axios'
+import connectToDb from '@/components/ConnectToDB.vue'
 
 export default {
   name: 'Home',
   components: {
-    'users-table': UserTable
+    'users-table': UserTable,
+    'connect-db': connectToDb
   },
   data: function() {
     return {
@@ -32,7 +34,7 @@ export default {
       show: true, // отображение таблицы
       edit: false, //  отображение формы редактирования
       editData: '',
-      users: []
+      queryHome: 'http://localhost:3030/users/'
     }
   },
   computed: {
@@ -50,9 +52,6 @@ export default {
       console.log('list change')
     }
   },
-  mounted: function() {
-    this.loadUsers()
-  },
   methods: {
     // изменение отображения таблицы
     changeShow: function() {
@@ -60,7 +59,7 @@ export default {
       this.edit = !this.show
     },
     removeFromList: function(id) {
-      console.log('removeFromList = ', id)
+      // console.log('removeFromList = ', id)
       this.list = this.list.filter(function(item) {
         return item.id !== id
       })
@@ -69,16 +68,11 @@ export default {
       this.show = false
       this.edit = true
       this.editData = listItem
-      console.log('editData = ', this.editData)
+      // console.log('editData = ', this.editData)
     },
-    loadUsers() {
-      axios
-        .get('http://localhost:3030/users/')
-        .then(response => response.data)
-        .then(users => {
-          this.list = users
-          // console.log('users', this.users)
-        })
+    UserFromDB(data) {
+      // console.log('UserFromDB', data)
+      this.list = data
     }
   }
 }

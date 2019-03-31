@@ -3,7 +3,7 @@
     <div class="form-group">
       <label>Имя</label>
       <input v-model="localUser.firstName" type="text" class="form-control" />
-      <pre>{{ user.firstName }}</pre>
+      <pre>{{ user2.firstName }}</pre>
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 export default {
   name: 'UsersForm',
   props: {
-    user: {
+    user2: {
       type: Object,
       required: true
     }
@@ -24,7 +24,7 @@ export default {
   },
   created() {
     // Копируем пользователя в локальное состояние
-    this.localUser = Object.assign({}, this.user)
+    this.localUser = Object.assign({}, this.user2)
     // console.log('this.localUser = ', this.localUser)
   }
 }

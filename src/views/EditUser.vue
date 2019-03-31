@@ -1,46 +1,44 @@
 <template>
   <div>
     <div>Edit Users {{ id }}</div>
-    <user-form v-if="user" :user="user"></user-form>
+    <user-form v-if="user1" :user2="user1"></user-form>
     <div v-else class="alert alert-warning" role="alert">
       Данные не загружены.
     </div>
+    <connect-db :query="queryEditUser" @connect-db="UserDataDB" />
   </div>
 </template>
 
 <script>
 import UserForm from '@/components/UserForm.vue'
-import axios from 'axios'
+import connectToDb from '@/components/ConnectToDB.vue'
 
 export default {
   name: 'EditUserPage',
   components: {
-    UserForm
+    'user-form': UserForm,
+    'connect-db': connectToDb
   },
   data: function() {
     return {
-      user: null,
+      user1: null,
       userDownload: false
     }
   },
   computed: {
     id() {
       return this.$route.params.id
+    },
+    queryEditUser() {
+      return 'http://localhost:3030/users/' + this.id
     }
   },
-  mounted: function() {
-    this.loadUsers()
-  },
   methods: {
-    loadUsers() {
-      axios
-        .get('http://localhost:3030/users/' + this.id)
-        .then(response => response.data)
-        .then(response => {
-          this.user = response
-          this.userDownload = true
-          // console.log('users', this.users)
-        })
+    UserDataDB(data) {
+      this.user1 = data
+      if (this.user1) {
+        this.userDownload = true
+      }
     }
   }
 }
