@@ -14,7 +14,7 @@
     "leaflet": "1.4.0",
     "vue": "2.6.6",
     "vue-router": "3.0.1",
-    "vue2-leaflet": "^2.0.2"
+    "vue2-leaflet": "2.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.5.0",
