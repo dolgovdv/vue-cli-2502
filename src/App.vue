@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <router-link to="/" class="navbar-brand">Fixed navbar</router-link>
+      <router-link to="/" class="navbar-brand">LearnJS</router-link>
       <button
         class="navbar-toggler"
         type="button"

@@ -72,8 +72,6 @@ export default {
       return avatarLink || 'http://www.avatar-mix.ru/avatars_64x64/289.jpg'
     },
     removeUser: function(id) {
-      // console.log('removeUser =', id)
-
       this.$emit('remove-user', id)
     },
     editUser: function(listItem) {
