@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Tree from '@/views/Tree.vue'
 import Edit from '@/views/EditUser.vue'
+import Map from '@/views/Map.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/edit/:id',
       name: 'edit',
       component: Edit
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: Map
     }
   ]
 })
