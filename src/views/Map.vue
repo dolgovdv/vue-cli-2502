@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>Map</h1>
+    <img :src="require('@/icons/svg/carbattery.svg')" alt="icon" />
+    <img :src="iconAgent.iconUrl" alt="icon" />
     <div id="map"></div>
   </div>
 </template>
@@ -28,18 +30,30 @@ export default {
       marker: [
         {
           coords: [55.75, 37.61],
-          alarm: null
+          alarm: 1
         },
         {
           coords: [55.75, 37.62],
-          alarm: null
+          alarm: null,
+          agent: 'ererwrw'
         },
         {
           coords: [55.755, 37.62],
           alarm: null
         }
       ],
-      ClasterClass: 'mycluster'
+      iconAgent: L.icon({
+        iconUrl: '/public/carbattery.svg',
+        iconSize: [50, 65],
+        iconAnchor: [16, 37]
+      })
+    }
+  },
+  watch: {
+    marker: function(newVal, oldVal) {
+      console.log('новое значение:, старое значение:', newVal, oldVal)
+      this.refreshMarkers()
+      this.addMarker(this.marker)
     }
   },
   mounted() {
@@ -70,13 +84,13 @@ export default {
         // измененеие иконки маркера кластера
         iconCreateFunction: function(cluster) {
           let ClasterClass = 'mycluster'
-          console.log(cluster.getAllChildMarkers())
+          //console.log(cluster.getAllChildMarkers())
           // получение объектов кластера
           let markers = cluster.getAllChildMarkers()
 
           for (var i = 0; i < markers.length; i++) {
-            console.log(markers[i].alarm)
-            if (markers[i].alarm !== null) {
+            console.log('markers[i].alarm', markers[i].alarm)
+            if (markers[i].alarm !== null && markers[i].alarm !== undefined) {
               ClasterClass = 'myclusterAlarm'
             }
           }
@@ -90,7 +104,8 @@ export default {
       })
       arr.forEach(element => {
         // формирование маркеров на слое кластера
-        let markerLayerClaster = L.marker(element.coords)
+        let fillMarker = this.fillingMarker(element)
+        let markerLayerClaster = fillMarker // L.marker(element.coords)
         markerLayerClaster.alarm = element.alarm
         // L.marker(element.coords).addTo(this.map)
         // marker claster
@@ -98,6 +113,18 @@ export default {
       })
       // добавление маркеров на слой
       this.map.addLayer(this.markers)
+      this.refreshMarkers()
+    },
+    refreshMarkers() {
+      console.log('refreshMarkers')
+      this.markers.refreshClusters()
+    },
+    fillingMarker(dataMarker) {
+      if (dataMarker.agent) {
+        return L.marker(dataMarker.coords, { icon: this.iconAgent })
+      } else {
+        return L.marker(dataMarker.coords)
+      }
     }
   }
 }
