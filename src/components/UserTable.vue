@@ -69,7 +69,7 @@ export default {
   methods: {
     // проверка аватарки и замена на значение по умолчанию
     changeAvatarShow: function(avatarLink) {
-      return avatarLink || 'http://www.avatar-mix.ru/avatars_64x64/289.jpg'
+      return avatarLink || './pic/images.jpg'
     },
     removeUser: function(id) {
       this.$emit('remove-user', id)
