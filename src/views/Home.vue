@@ -18,13 +18,12 @@
 
 <script>
 // @ is an alias to /src
-import UserTable from '@/components/UserTable.vue'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
-    'users-table': UserTable
+    'users-table': () => import('@/components/UserTable.vue')
   },
   data: function() {
     return {

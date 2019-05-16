@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home.vue'
-import About from '@/views/About.vue'
-import Tree from '@/views/Tree.vue'
-import Edit from '@/views/EditUser.vue'
-import MapUser from '@/views/Map.vue'
 
 Vue.use(Router)
 
@@ -15,27 +10,27 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('@/views/Home.vue')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('@/views/About.vue')
     },
     {
       path: '/tree',
       name: 'tree',
-      component: Tree
+      component: () => import('@/views/Tree.vue')
     },
     {
       path: '/edit/:id',
       name: 'edit',
-      component: Edit
+      component: () => import('@/views/EditUser.vue')
     },
     {
       path: '/map',
       name: 'map',
-      component: MapUser
+      component: () => import('@/views/Map.vue')
     }
   ]
 })

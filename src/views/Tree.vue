@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import UserTree from '@/components/UserTree.vue'
 import Vue from 'vue'
 
 // demo data
@@ -40,7 +39,7 @@ const treeData = {
 export default {
   name: 'Tree',
   components: {
-    'user-tree': UserTree
+    'user-tree': () => import('@/components/UserTree.vue')
   },
   data: function() {
     return {
