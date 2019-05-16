@@ -20,6 +20,10 @@
 <script>
 export default {
   name: 'UsersForm',
+  model: {
+    prop: 'userdata',
+    event: 'edit-user'
+  },
   props: {
     userdata: {
       type: Object,
@@ -36,9 +40,7 @@ export default {
     // отправляем объект наверх
     localUser: {
       deep: true,
-      handler() {
-        this.$emit('input', this.localUser)
-      }
+      handler: 'editUser'
     }
   },
   created() {

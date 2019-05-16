@@ -4,7 +4,11 @@
     <div v-if="!user" class="alert alert-warning" role="alert">
       Данные не загружены.
     </div>
-    <user-form v-else :userdata="user" @edit-user="editUserMain"></user-form>
+    <!-- <user-form v-else :userdata="user" @edit-user="editUserMain"></user-form>  extension v-model-->
+    <user-form v-else v-model="user"></user-form>
+    <button type="button" @click="saveUsers">
+      Save
+    </button>
   </div>
 </template>
 
@@ -43,8 +47,10 @@ export default {
           // console.log('users', this.users)
         })
     },
-    editUserMain(data) {
-      this.user = data
+    saveUsers() {
+      axios.patch(this.queryEditUser, this.user).then(() => {
+        this.$router.push('/')
+      })
     }
   }
 }
